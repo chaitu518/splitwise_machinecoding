@@ -10,5 +10,5 @@ import java.util.List;
 public class Group {
     private long id;
     private String name;
-    private List<Expenses> expensesList;
+    private List<Long> expensesIds;
 }

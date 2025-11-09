@@ -7,10 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Expenses {
+public class Expense {
     private long id;
     private String name;
     private double amount;
     private long paidBy;
-    private List<User> userShare;
+    private List<Long> userShareIds;
 }
