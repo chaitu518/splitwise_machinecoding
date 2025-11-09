@@ -11,4 +11,5 @@ public class Group {
     private long id;
     private String name;
     private List<Long> expensesIds;
+    private List<Long> members;
 }

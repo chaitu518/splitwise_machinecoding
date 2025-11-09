@@ -1,16 +1,20 @@
 package com.srt.splitwise.service;
 
+
 import com.srt.splitwise.Models.Group;
 import com.srt.splitwise.repo.InMemoryGroupRepo;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+
 
 @Service
 public class GroupServiceImpl implements GroupService {
     private InMemoryGroupRepo groupRepo;
     public GroupServiceImpl(InMemoryGroupRepo groupRepo) {
         this.groupRepo = groupRepo;
+        ;
     }
 
     @Override
@@ -27,4 +31,10 @@ public class GroupServiceImpl implements GroupService {
     public Group createGroup(Group group) {
         return groupRepo.addGroup(group);
     }
+
+    @Override
+    public Group updateGroup(long id,Group group) {
+        return groupRepo.updateGroup(id,group);
+    }
+
 }

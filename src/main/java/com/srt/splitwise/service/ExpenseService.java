@@ -4,8 +4,10 @@ import com.srt.splitwise.Models.Expense;
 import org.springframework.stereotype.Service;
 
 import java.net.InterfaceAddress;
+import java.util.List;
 
 
 public interface ExpenseService {
     public Expense addExpense(Expense expense);
+    public List<Expense> getAllExpenses();
 }

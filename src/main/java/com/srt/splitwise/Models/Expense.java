@@ -9,6 +9,7 @@ import java.util.List;
 @Setter
 public class Expense {
     private long id;
+    private long groupId;
     private String name;
     private double amount;
     private long paidBy;

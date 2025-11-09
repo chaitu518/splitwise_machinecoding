@@ -14,13 +14,21 @@ public class InMemoryGroupRepo {
     private long id;
     public InMemoryGroupRepo() {
         groups = new HashMap<>();
+        id=0;
     }
-    public Group getGroup(long id) {
-        return groups.get(id);
+    public Group getGroup(long groupId) {
+        return groups.get(groupId);
     }
     public Group addGroup(Group group) {
         group.setId(++id);
         groups.put(group.getId(), group);
+        return group;
+    }
+    public Group updateGroup(long gid,Group group) {
+        Group oldGroup = groups.get(gid);
+        if(group.getName()!=null)oldGroup.setName(group.getName());
+        if(group.getExpensesIds()!=null)oldGroup.setExpensesIds(group.getExpensesIds());
+        groups.put(oldGroup.getId(), oldGroup);
         return group;
     }
     public List<Group> getAllGroups() {

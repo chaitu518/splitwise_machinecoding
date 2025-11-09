@@ -2,22 +2,27 @@ package com.srt.splitwise.controller;
 
 import com.srt.splitwise.Models.Expense;
 import com.srt.splitwise.service.ExpenseService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController()
-@RequestMapping("/expenses")
+@RequestMapping("/groups")
 public class ExpenseController {
     private ExpenseService expenseService;
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService=expenseService;
     }
 
-    @PostMapping
-    public Expense addExpense(@RequestBody Expense expense) {
+    @PostMapping("/{groupId}/expenses")
+    public Expense addExpense(@PathVariable long groupId, @RequestBody Expense expense) {
+        //System.out.println(groupId+" ");
+        expense.setGroupId(groupId);
         return expenseService.addExpense(expense);
 
+    }
+    @GetMapping("/{groupId}/expenses")
+    public List<Expense> getAllExpenses(@PathVariable long groupId) {
+        return expenseService.getAllExpenses();
     }
 }
