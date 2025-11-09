@@ -1,5 +1,6 @@
 package com.srt.splitwise.repo;
 
+import com.srt.splitwise.Models.Expense;
 import com.srt.splitwise.Models.Group;
 import org.springframework.stereotype.Repository;
 
@@ -33,5 +34,8 @@ public class InMemoryGroupRepo {
     }
     public List<Group> getAllGroups() {
         return new ArrayList<>(groups.values());
+    }
+    public List<Long> getExpenses(long groupId) {
+        return groups.get(groupId).getExpensesIds();
     }
 }

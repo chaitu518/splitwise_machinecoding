@@ -1,6 +1,7 @@
 package com.srt.splitwise.controller;
 
 import com.srt.splitwise.Dto.FairShare;
+import com.srt.splitwise.Exceptions.GroupRelatedException;
 import com.srt.splitwise.Models.Group;
 import com.srt.splitwise.service.CaluclateBalance;
 import com.srt.splitwise.service.GroupService;
@@ -22,19 +23,19 @@ public class GroupController {
         return groupService.getGroups();
     }
     @GetMapping("/{id}")
-    public Group getGroup(@PathVariable int id) {
+    public Group getGroup(@PathVariable int id) throws GroupRelatedException {
         return groupService.getGroup(id);
     }
     @PostMapping
-    public Group addGroup(@RequestBody Group group) {
+    public Group addGroup(@RequestBody Group group) throws GroupRelatedException {
         return groupService.createGroup(group);
     }
     @PutMapping("/{id}")
-    public Group updateGroup(@PathVariable int id, @RequestBody Group group) {
+    public Group updateGroup(@PathVariable int id, @RequestBody Group group) throws GroupRelatedException {
         return groupService.updateGroup(id,group);
     }
     @GetMapping("/{id}/Balances")
-    public FairShare getGroupBalances(@PathVariable int id) {
+    public FairShare getGroupBalances(@PathVariable int id) throws GroupRelatedException {
         return caluclateBalance.createFairShare(id);
     }
 }
