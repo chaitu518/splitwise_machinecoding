@@ -1,10 +1,12 @@
 package com.srt.splitwise.controller;
 
 import com.srt.splitwise.Dto.FairShare;
+import com.srt.splitwise.Dto.SettleUserBalance;
 import com.srt.splitwise.Exceptions.GroupRelatedException;
 import com.srt.splitwise.Models.Group;
 import com.srt.splitwise.service.CaluclateBalance;
 import com.srt.splitwise.service.GroupService;
+import com.srt.splitwise.service.SettleBalanceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +16,11 @@ import java.util.List;
 public class GroupController {
     private GroupService groupService;
     private CaluclateBalance caluclateBalance;
-    public GroupController(GroupService groupService,CaluclateBalance caluclateBalance) {
+    private SettleBalanceService settleBalanceService;
+    public GroupController(GroupService groupService,CaluclateBalance caluclateBalance,SettleBalanceService settleBalanceService) {
         this.groupService = groupService;
         this.caluclateBalance = caluclateBalance;
+        this.settleBalanceService = settleBalanceService;
     }
     @GetMapping("")
     public List<Group> getGroups() {
@@ -37,5 +41,9 @@ public class GroupController {
     @GetMapping("/{id}/Balances")
     public FairShare getGroupBalances(@PathVariable int id) throws GroupRelatedException {
         return caluclateBalance.createFairShare(id);
+    }
+    @GetMapping("/{id}/SettleBalances")
+    public List<SettleUserBalance> getGroupSettleBalances(@PathVariable int id) throws GroupRelatedException {
+        return settleBalanceService.settleUserBalance(id);
     }
 }
